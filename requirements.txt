@@ -1,0 +1,3 @@
+# Automated Web Scanner Dependencies
+# Minimal footprint: depends only on requests and standard library
+requests>=2.31.0

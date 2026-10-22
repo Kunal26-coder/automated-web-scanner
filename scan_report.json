@@ -1,0 +1,122 @@
+[
+  {
+    "target_url": "http://testphp.vulnweb.com",
+    "final_url": "http://testphp.vulnweb.com",
+    "status_code": null,
+    "response_time_ms": 20029.597520828247,
+    "ip_address": null,
+    "scan_timestamp": "2026-10-23 00:06:29 UTC",
+    "score": 0,
+    "grade": "F",
+    "findings": [],
+    "headers": {},
+    "cors_tests": [],
+    "error": "Connection timed out after 10s while connecting to http://testphp.vulnweb.com"
+  },
+  {
+    "target_url": "https://example.com",
+    "final_url": "https://example.com/",
+    "status_code": 200,
+    "response_time_ms": 286.1757278442383,
+    "ip_address": "104.20.23.154",
+    "scan_timestamp": "2026-10-23 00:06:29 UTC",
+    "score": 25,
+    "grade": "F",
+    "findings": [
+      {
+        "severity": "HIGH",
+        "category": "Security Headers",
+        "title": "Missing Strict-Transport-Security (HSTS)",
+        "description": "Protects against protocol downgrade attacks, SSL stripping, and cookie hijacking.",
+        "evidence": "Header not present in HTTP response",
+        "remediation": "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload",
+        "owasp_ref": "A05:2021 - Security Misconfiguration"
+      },
+      {
+        "severity": "HIGH",
+        "category": "Security Headers",
+        "title": "Missing Content-Security-Policy (CSP)",
+        "description": "Mitigates Cross-Site Scripting (XSS), code injection, and data exfiltration.",
+        "evidence": "Header not present in HTTP response",
+        "remediation": "Content-Security-Policy: default-src 'self'; script-src 'self'; object-src 'none';",
+        "owasp_ref": "A05:2021 - Security Misconfiguration"
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "Security Headers",
+        "title": "Missing X-Frame-Options (Clickjacking Protection)",
+        "description": "Prevents clickjacking by controlling if the site can be rendered inside a <frame> or <iframe>.",
+        "evidence": "Header not present in HTTP response",
+        "remediation": "X-Frame-Options: DENY (or SAMEORIGIN, or CSP frame-ancestors)",
+        "owasp_ref": "A05:2021 - Security Misconfiguration"
+      },
+      {
+        "severity": "MEDIUM",
+        "category": "Security Headers",
+        "title": "Missing X-Content-Type-Options (MIME Sniffing)",
+        "description": "Prevents MIME-type confusion attacks by forcing browsers to honor declared Content-Type.",
+        "evidence": "Header not present in HTTP response",
+        "remediation": "X-Content-Type-Options: nosniff",
+        "owasp_ref": "A05:2021 - Security Misconfiguration"
+      },
+      {
+        "severity": "LOW",
+        "category": "Security Headers",
+        "title": "Missing Referrer-Policy",
+        "description": "Controls how much sensitive referrer information (e.g. tokens in URLs) is sent in requests.",
+        "evidence": "Header not present in HTTP response",
+        "remediation": "Referrer-Policy: strict-origin-when-cross-origin",
+        "owasp_ref": "A05:2021 - Security Misconfiguration"
+      },
+      {
+        "severity": "LOW",
+        "category": "Security Headers",
+        "title": "Missing Permissions-Policy",
+        "description": "Restricts browser features and APIs (camera, microphone, geolocation) accessible to the origin.",
+        "evidence": "Header not present in HTTP response",
+        "remediation": "Permissions-Policy: camera=(), microphone=(), geolocation=()",
+        "owasp_ref": "A05:2021 - Security Misconfiguration"
+      },
+      {
+        "severity": "LOW",
+        "category": "Information Leakage",
+        "title": "Server Software Version Disclosure",
+        "description": "Discloses server software and version numbers, aiding targeted vulnerability research.",
+        "evidence": "Server: cloudflare",
+        "remediation": "Disable detailed banner in web server (e.g., Apache 'ServerTokens Prod', Nginx 'server_tokens off').",
+        "owasp_ref": "A05:2021 - Security Misconfiguration"
+      }
+    ],
+    "headers": {
+      "Date": "Thu, 22 Oct 2026 18:36:29 GMT",
+      "Content-Type": "text/html; charset=utf-8",
+      "Transfer-Encoding": "chunked",
+      "Connection": "keep-alive",
+      "Server": "cloudflare",
+      "last-modified": "Wed, 21 Oct 2026 19:59:02 GMT",
+      "allow": "GET, HEAD",
+      "Age": "2243",
+      "cf-cache-status": "HIT",
+      "Content-Encoding": "gzip",
+      "CF-RAY": "a4ea9b9b9d845522-DEL",
+      "alt-svc": "h3=\":443\"; ma=86400"
+    },
+    "cors_tests": [
+      {
+        "test_origin": "https://evil.example.com",
+        "label": "Arbitrary Untrusted Domain",
+        "acao": null,
+        "acac": "false",
+        "status_code": 200
+      },
+      {
+        "test_origin": "null",
+        "label": "Null Origin (Sandboxed iframe / local origin)",
+        "acao": null,
+        "acac": "false",
+        "status_code": 200
+      }
+    ],
+    "error": null
+  }
+]
